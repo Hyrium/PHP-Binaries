@@ -36,6 +36,7 @@ set PHP_XXHASH_VER=0.2.0
 set PHP_XDEBUG_VER=3.3.1
 set PHP_ARRAYDEBUG_VER=0.2.0
 set PHP_ENCODING_VER=0.3.0
+set PHP_REDIS_VER=6.0.2
 
 set script_path=%~dp0
 set log_file=%script_path%compile.log
@@ -234,6 +235,7 @@ call :get-extension-zip-from-github "xxhash"                "%PHP_XXHASH_VER%"  
 call :get-extension-zip-from-github "xdebug"                "%PHP_XDEBUG_VER%"                "xdebug"   "xdebug"                  || exit 1
 call :get-extension-zip-from-github "arraydebug"            "%PHP_ARRAYDEBUG_VER%"            "pmmp"     "ext-arraydebug"          || exit 1
 call :get-extension-zip-from-github "encoding"              "%PHP_ENCODING_VER%"              "pmmp"     "ext-encoding"            || exit 1
+call :get-extension-zip-from-github "phpredis"              "%PHP_REDIS_VER%"                 "phpredis" "php-redis"               || exit 1
 
 call :pm-echo " - crypto: downloading %PHP_CRYPTO_VER%..."
 git clone https://github.com/bukka/php-crypto.git crypto >>"%log_file%" 2>&1 || exit 1
@@ -278,6 +280,7 @@ call configure^
  --enable-opcache^
  --enable-opcache-jit=%PHP_JIT_ENABLE_ARG%^
  --enable-phar^
+ --enable-redis=shared^
  --enable-recursionguard=shared^
  --enable-sockets^
  --enable-tokenizer^
@@ -352,6 +355,7 @@ if "%PM_VERSION_MAJOR%" geq "5" (
 (echo extension=php_igbinary.dll)>>"%php_ini%"
 (echo extension=php_leveldb.dll)>>"%php_ini%"
 (echo extension=php_crypto.dll)>>"%php_ini%"
+(echo extension=php_redis.dll)>>"%php_ini%"
 (echo extension=php_libdeflate.dll)>>"%php_ini%
 (echo igbinary.compact_strings=0)>>"%php_ini%"
 (echo zend_extension=php_opcache.dll)>>"%php_ini%"
