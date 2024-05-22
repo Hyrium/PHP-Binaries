@@ -27,6 +27,7 @@ EXT_MORTON_VERSION="0.1.2"
 EXT_XXHASH_VERSION="0.2.0"
 EXT_ARRAYDEBUG_VERSION="0.2.0"
 EXT_ENCODING_VERSION="0.3.0"
+EXT_REDIS_VERSION="6.0.2"
 
 function write_out {
 	echo "[$1] $2"
@@ -1068,6 +1069,8 @@ get_github_extension "arraydebug" "$EXT_ARRAYDEBUG_VERSION" "pmmp" "ext-arraydeb
 
 get_github_extension "encoding" "$EXT_ENCODING_VERSION" "pmmp" "ext-encoding"
 
+get_github_extension "redis" "$EXT_REDIS_VERSION" "phpredis" "phpredis"
+
 write_library "PHP" "$PHP_VERSION"
 
 write_configure
@@ -1189,6 +1192,7 @@ $HAVE_MYSQLI \
 --enable-opcache=$HAVE_OPCACHE \
 --enable-opcache-jit=$HAVE_OPCACHE_JIT \
 --enable-igbinary \
+--enable-redis \
 --with-crypto \
 --enable-recursionguard \
 --enable-xxhash \
