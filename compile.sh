@@ -1192,6 +1192,7 @@ $HAVE_MYSQLI \
 --enable-opcache=$HAVE_OPCACHE \
 --enable-opcache-jit=$HAVE_OPCACHE_JIT \
 --enable-igbinary \
+--disable-redis-session \
 --enable-redis \
 --with-crypto \
 --enable-recursionguard \
